@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controller\JobCardController;
+use App\Http\Controllers\JobCardController;
 Route::get('/', function () {
     return view('welcome');
 });

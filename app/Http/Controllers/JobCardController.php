@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobCard;
+use App\Services\WhatsAppService;
 use Illuminate\Http\Request;
-use App\Service\WhatsAppService;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class JobCardController extends Controller
 {
-    public function store(Request $request,WhatsAppService $whatsapp){
+    public function store(Request $request, WhatsAppService $whatsapp)
+    {
         $validated = $request->validate([
-            'whatshop_id' => 'required|exists:workshops,id',
-            'vechicle_number' => 'required|string|max:20',
+            'workshop_id' => 'required|exists:workshops,id',
+            'vehicle_number' => 'required|string|max:20',
             'customer_name' => 'required|string|max:200',
             'customer_phone'  => 'required|string|max:15',
             'notes'           => 'nullable|string',
@@ -24,7 +25,7 @@ class JobCardController extends Controller
         
     
 
-    $jobCard = DB::transaction(function () use ($validated, $request) {
+        $jobCard = DB::transaction(function () use ($validated, $request) {
             $cleanVehicle = strtoupper(preg_replace('/\s+/', '', $validated['vehicle_number']));
 
             $job = JobCard::create([
