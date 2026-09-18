@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'whatsapp' => [
+        'token' => env('WHATSAPP_CLOUD_TOKEN'),
+        'phone_id' => env('WHATSAPP_PHONE_NUMBER_ID'),
+        'endpoint' => env('WHATSAPP_CLOUD_ENDPOINT', 'https://graph.facebook.com/v20.0/'.env('WHATSAPP_PHONE_NUMBER_ID').'/messages'),
+    ],
+
 ];

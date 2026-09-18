@@ -1,9 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobCardController;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post('/api/jobcards/checkin', [JobCardController::class, 'store']);
-Route::get('/track/{token}', [JobCardController::class, 'track']);
+
+Route::get('/checkin/{workshop}/create', [JobCardController::class, 'create'])->name('checkin.create');
+Route::post('/api/workshops/{workshop}/jobcards', [JobCardController::class, 'store'])->name('jobcards.store');
+Route::get('/track/{token}', [JobCardController::class, 'track'])->name('track');
